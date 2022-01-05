@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row d-flex align-items-center justify-content-center" style="height: 80vh">
+    <div class="col-md-8">
+      <h3 class="mb-3 display-3 text-center">Edit Todo</h3>
+      <!-- Error checking (validation) -->
+      <% if (typeof errors != 'undefined') { %>
+      <div class="alert alert-danger">
+        <ul>
+          <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } %>
+      <form method="POST" action="/todos?_method=PUT">
+        <input type="hidden" name="_id" value="<%= todolist._id %>" />
+        <input type="hidden" name="oldTodo" value="<%= todolist.oldTodo || todolist.todo %>" />
+        <div class="mb-3">
+          <label for="todo" class="form-label">Todo</label>
+          <input type="text" class="form-control" id="todo" name="todo" required value="<%= todolist.todo %>" />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <input type="textarea" class="form-control" id="description" name="description" value="<%= todolist.description %>" />
+        </div>
+        <button type="submit" class="btn btn-success">Edit Todos</button>
+      </form>
+    </div>
+  </div>
+</div>

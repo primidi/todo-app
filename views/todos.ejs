@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row d-flex align-items-center justify-content-center" style="height: 80vh">
+    <div class="col-md-8">
+      <h3 class="mb-3 display-3 text-center">Todo Lists</h3>
+      <a href="/todos/add" class="btn btn-success mb-3"><i class="bi bi-file-earmark-plus"></i> Add New Todo</a>
+
+      <% if (msg.length !== 0) { %>
+      <div class="alert alert-success" role="alert"><%= msg %></div>
+      <% } %>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Todo</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (todolists.length === 0) { %>
+          <div class="alert alert-primary" role="alert"><strong>Todo Lists is Empty,</strong> it's time to get chill!</div>
+          <% } %> <% todolists.forEach((todolist, i) => { i++ %>
+          <tr>
+            <th scope="row"><%= i++ %></th>
+            <td><%= todolist.todo %></td>
+            <td><%= todolist.description %></td>
+            <td>
+              <a href="/todos/edit/<%= todolist.todo %>" class="btn btn-primary badge rounded-pill"><i class="bi bi-pencil"></i> Edit</a>
+              <form method="POST" action="/todos?_method=DELETE" class="d-inline">
+                <input type="hidden" name="todo" value="<%= todolist.todo %>" />
+                <button type="submit" class="btn btn-danger badge rounded-pill" onclick="return confirm('Are you sure want to delete this todo?')"><i class="bi bi-bookmark-check"></i> Mark as Done</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
