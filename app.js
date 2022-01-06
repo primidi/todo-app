@@ -155,7 +155,7 @@ app.put(
       ).then((result) => {
         // Send the flash message
         req.flash("msg", "Todo edited!");
-        req.redirect("/todos");
+        res.redirect("/todos");
       });
     }
   }
