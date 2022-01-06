@@ -63,6 +63,14 @@ app.get("/todos", async (req, res) => {
   });
 });
 
+// About Page
+app.get("/about", (req, res) => {
+  res.render("about", {
+    layout: "layouts/main-layout",
+    title: "To Do List App | About",
+  });
+});
+
 // Todo add form
 app.get("/todos/add", (req, res) => {
   res.render("add-todos", {
